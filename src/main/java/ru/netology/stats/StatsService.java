@@ -16,23 +16,10 @@ public class StatsService {
     }
 
     public static int salesMax(int[] sales) {
-            int max = 20;
-            int month = 0;
-            for (int i = 0; i < sales.length; i++) {
-                if (sales[i] == max) {
-                    month = i;
-                }
-            }
-            return month + 1;
-
-        }
-
-
-    public static int salesMin(int[] sales) {
-        int min = 7;
-        int month =0;
+        int max = maximumSales(sales);
+        int month = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] == min) {
+            if (sales[i] == max) {
                 month = i;
             }
         }
@@ -40,7 +27,42 @@ public class StatsService {
 
     }
 
-    public static int salesBelowAverage(int[] sales) {
+    public static int maximumSales(int[] sales) {
+        int max = sales[0];
+        for (int i : sales) {
+            if (i > max) {
+                max = i;
+            }
+        }
+        return max;
+    }
+
+
+
+
+    public static int salesMin(int[] sales) {
+        int min = salesMinimum(sales);
+        int month = 0;
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i] == min) {
+                month = i;
+            }
+        }
+        return month + 1;
+    }
+        public static int salesMinimum(int[] sales) {
+            int min = sales[0];
+            for (int i : sales) {
+                if (i < min) {
+                    min = i;
+                }
+            }
+            return min;
+        }
+
+
+
+        public static int salesBelowAverage(int[] sales) {
         int average = salesAverage(sales);
         int months = 0;
         for (int sale : sales) {
